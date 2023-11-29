@@ -1,10 +1,12 @@
+// 1-block-scoped.js
+
 export default function taskBlock(trueOrFalse) {
-  const task = false;
-  const task2 = true;
+  let task = false; // Use let instead of var
+  let task2 = true; // Use let instead of var
 
   if (trueOrFalse) {
-    const task = true; // eslint-disable-line no-unused-vars
-    const task2 = false; // eslint-disable-line no-unused-vars
+    let task = true; // Use let to create a new variable with block scope
+    let task2 = false; // Use let to create a new variable with block scope
   }
 
   return [task, task2];
