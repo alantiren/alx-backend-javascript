@@ -1,55 +1,41 @@
 // 10-car.js
-
-const CAR_ATTRIBUTES = Symbol('carAttributes');
-
-/**
- * Represents a car.
- */
 export default class Car {
-  /**
-   * Creates a new Car instance.
-   * @param {String} brand - The brand of the car.
-   * @param {String} motor - The motor of the car.
-   * @param {String} color - The color of the car.
-   */
   constructor(brand, motor, color) {
-    this[CAR_ATTRIBUTES] = {
-      _brand: brand,
-      _motor: motor,
-      _color: color,
-    };
+    this._brand = brand;
+    this._motor = motor;
+    this._color = color;
   }
 
-  /**
-   * Clones the car object.
-   * @returns {Car} - A new Car instance.
-   */
-  cloneCar() {
-    const { _brand, _motor, _color } = this[CAR_ATTRIBUTES];
-    return new Car(_brand, _motor, _color);
-  }
-
-  /**
-   * Getter for the brand of the car.
-   * @returns {String} - The brand of the car.
-   */
   get brand() {
-    return this[CAR_ATTRIBUTES]._brand;
+    return this._brand;
   }
 
-  /**
-   * Getter for the motor of the car.
-   * @returns {String} - The motor of the car.
-   */
+  set brand(value) {
+    this._brand = value;
+  }
+
   get motor() {
-    return this[CAR_ATTRIBUTES]._motor;
+    return this._motor;
   }
 
-  /**
-   * Getter for the color of the car.
-   * @returns {String} - The color of the car.
-   */
+  set motor(value) {
+    this._motor = value;
+  }
+
   get color() {
-    return this[CAR_ATTRIBUTES]._color;
+    return this._color;
+  }
+
+  set color(value) {
+    this._color = value;
+  }
+
+  static get [Symbol.species]() {
+    return this;
+  }
+
+  cloneCar() {
+    const Species = this.constructor[Symbol.species];
+    return new Species();
   }
 }

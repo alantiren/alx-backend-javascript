@@ -1,56 +1,46 @@
-// 3-currency.js
+// 4-pricing.js
 
-/**
- * Represents a currency.
- */
-export default class Currency {
-  /**
-   * Creates a new Currency instance.
-   * @param {String} code - The currency code.
-   * @param {String} name - The currency name.
-   */
-  constructor(code, name) {
-    this._code = code;
-    this._name = name;
+import Currency from './3-currency.js';
+
+export default class Pricing {
+  constructor(amount, currency) {
+    this._amount = amount;
+    this._currency = currency;
   }
 
-  /**
-   * Getter for the currency code.
-   * @returns {String} - The currency code.
-   */
-  get code() {
-    return this._code;
+  get amount() {
+    return this._amount;
   }
 
-  /**
-   * Setter for the currency code.
-   * @param {String} value - The new currency code.
-   */
-  set code(value) {
-    this._code = value;
+  set amount(value) {
+    if (typeof value !== 'number') {
+      throw new TypeError('amount must be a number');
+    }
+    this._amount = value;
   }
 
-  /**
-   * Getter for the currency name.
-   * @returns {String} - The currency name.
-   */
-  get name() {
-    return this._name;
+  get currency() {
+    return this._currency;
   }
 
-  /**
-   * Setter for the currency name.
-   * @param {String} value - The new currency name.
-   */
-  set name(value) {
-    this._name = value;
+  set currency(value) {
+    if (!(value instanceof Currency)) {
+      throw new TypeError('currency must be a Currency');
+    }
+    this._currency = value;
   }
 
-  /**
-   * Displays the full currency in the format: name (code).
-   * @returns {String} - The full currency format.
-   */
-  displayFullCurrency() {
-    return `${this._name} (${this._code})`;
+  displayFullPrice() {
+    return `${this._amount} ${this._currency.name} (${this._currency.code})`;
+  }
+
+  static convertPrice(amount, conversionRate) {
+    if (typeof amount !== 'number') {
+      throw new TypeError('amount must be a number');
+    }
+    if (typeof conversionRate !== 'number') {
+      throw new TypeError('conversionRate must be a number');
+    }
+    return amount * conversionRate;
   }
 }

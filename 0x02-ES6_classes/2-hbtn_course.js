@@ -6,68 +6,62 @@
 export default class HolbertonCourse {
   /**
    * Creates a new HolbertonCourse instance.
+   *
    * @param {String} name - The name of the course.
-   * @param {Number} length - The length of the course.
-   * @param {Array<String>} students - An array of student names.
+   * @param {Number} length - How long the course is (in months).
+   * @param {String[]} students - The names of students in the course.
    */
   constructor(name, length, students) {
     this._name = this.validateString(name, 'Name');
     this._length = this.validateNumber(length, 'Length');
-    this._students = students; // No validation for students array, assuming it's optional.
+    this._students = this.validateArray(students, 'Students');
   }
 
   /**
-   * Getter for the course name.
-   * @returns {String} - The name of the course.
+   * Gets the name of this course.
    */
   get name() {
     return this._name;
   }
 
   /**
-   * Setter for the course name.
-   * @param {String} value - The new name for the course.
+   * Sets the name of this course.
    */
   set name(value) {
     this._name = this.validateString(value, 'Name');
   }
 
   /**
-   * Getter for the course length.
-   * @returns {Number} - The length of the course.
+   * Gets the length of this course (in months).
    */
   get length() {
     return this._length;
   }
 
   /**
-   * Setter for the course length.
-   * @param {Number} value - The new length for the course.
+   * Sets the length of this course (in months).
    */
   set length(value) {
     this._length = this.validateNumber(value, 'Length');
   }
 
   /**
-   * Getter for the students array.
-   * @returns {Array<String>} - An array of student names.
+   * Gets the names of students in this course.
    */
   get students() {
     return this._students;
   }
 
   /**
-   * Setter for the students array.
-   * @param {Array<String>} value - The new array of student names.
+   * Sets the names of students in this course.
    */
   set students(value) {
-    // No validation for students array, assuming it's optional.
-    this._students = value;
+    this._students = this.validateArray(value, 'Students');
   }
 
   /**
-   * Validates and returns a string attribute.
-   * @param {any} value - The value to validate.
+   * Validates if the value is a string.
+   * @param {*} value - The value to be validated.
    * @param {String} attribute - The name of the attribute being validated.
    * @returns {String} - The validated string.
    * @throws {TypeError} - If the value is not a string.
@@ -80,8 +74,8 @@ export default class HolbertonCourse {
   }
 
   /**
-   * Validates and returns a number attribute.
-   * @param {any} value - The value to validate.
+   * Validates if the value is a number.
+   * @param {*} value - The value to be validated.
    * @param {String} attribute - The name of the attribute being validated.
    * @returns {Number} - The validated number.
    * @throws {TypeError} - If the value is not a number.
@@ -89,6 +83,20 @@ export default class HolbertonCourse {
   validateNumber(value, attribute) {
     if (typeof value !== 'number') {
       throw new TypeError(`${attribute} must be a number`);
+    }
+    return value;
+  }
+
+  /**
+   * Validates if the value is an array.
+   * @param {*} value - The value to be validated.
+   * @param {String} attribute - The name of the attribute being validated.
+   * @returns {Array} - The validated array.
+   * @throws {TypeError} - If the value is not an array.
+   */
+  validateArray(value, attribute) {
+    if (!Array.isArray(value)) {
+      throw new TypeError(`${attribute} must be an array`);
     }
     return value;
   }

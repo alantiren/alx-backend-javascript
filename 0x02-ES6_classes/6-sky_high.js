@@ -1,33 +1,27 @@
 // 6-sky_high.js
-import Building from './5-building.js';
-
-/**
- * Represents a skyscraper building.
- */
-export default class SkyHighBuilding extends Building {
-  /**
-   * Creates a new SkyHighBuilding instance.
-   * @param {Number} sqft - The square footage of the building.
-   * @param {Number} floors - The number of floors in the building.
-   */
-  constructor(sqft, floors) {
-    super(sqft);
-    this._floors = floors;
+export default class Airport {
+  constructor(name, code) {
+    this._name = name;
+    this._code = code;
   }
 
-  /**
-   * Getter for the number of floors in the building.
-   * @returns {Number} - The number of floors.
-   */
-  get floors() {
-    return this._floors;
+  get name() {
+    return this._name;
   }
 
-  /**
-   * Overrides the evacuationWarningMessage method.
-   * @returns {String} - Evacuation warning message.
-   */
-  evacuationWarningMessage() {
-    return `Evacuate slowly the ${this._floors} floors`;
+  set name(value) {
+    this._name = value;
+  }
+
+  get code() {
+    return this._code;
+  }
+
+  set code(value) {
+    this._code = value;
+  }
+
+  toString() {
+    return `Airport [${this._code}] { _name: '${this._name}', _code: '${this._code}' }`;
   }
 }
