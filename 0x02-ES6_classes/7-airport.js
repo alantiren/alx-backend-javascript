@@ -23,6 +23,14 @@ export default class Airport {
   }
 
   /**
+   * set the airport name.
+   * @returns {String} - The name of the airport.
+   */
+  set name() {
+    this._name = value;
+  }
+
+  /**
    * Getter for the airport code.
    * @returns {String} - The code of the airport.
    */
@@ -31,10 +39,18 @@ export default class Airport {
   }
 
   /**
+   * set the airport code.
+   * @returns {String} - The code of the airport.
+   */
+  set code(value) {
+    this._code = value;
+  }
+
+  /**
    * Default string description of the class.
    * @returns {String} - The airport code.
    */
-  toString() {
-    return `[object ${this._code}] { _name: '${this._name}', _code: '${this._code}' }`;
+  get [Symbol.toStringTag]() {
+    return this._code;
   }
 }
