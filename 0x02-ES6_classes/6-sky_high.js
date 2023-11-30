@@ -1,5 +1,7 @@
 // 6-sky_high.js
-export default class Airport {
+import Building from './5-building';
+
+export default class SkyHighBuilding extends Building {
   constructor(name, code) {
     this._name = name;
     this._code = code;
