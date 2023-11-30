@@ -1,28 +1,16 @@
 // 4-pricing.js
-import Currency from './3-currency.js';
+import Currency from './3-currency';
 
-/**
- * Represents a pricing with an amount and currency.
- */
 export default class Pricing {
-  /**
-   * Creates a new Pricing instance.
-   */
   constructor(amount, currency) {
-    this._amount = amount;
-    this._currency = currency;
+    this.amount = amount;
+    this.currency = currency;
   }
 
-  /**
-   * Getter for the amount.
-   */
   get amount() {
     return this._amount;
   }
 
-  /**
-   * Setter for the amount.
-   */
   set amount(value) {
     if (typeof value !== 'number') {
       throw new TypeError('amount must be a number');
@@ -31,16 +19,14 @@ export default class Pricing {
   }
 
   /**
-   * Getter for the currency.
-   * @returns {Currency} - The currency.
+   * @returns {Currency}
    */
   get currency() {
     return this._currency;
   }
 
   /**
-   * Setter for the currency.
-   * @param {Currency} value - The new currency.
+   * @param {Currency} value
    */
   set currency(value) {
     if (!(value instanceof Currency)) {
@@ -48,22 +34,11 @@ export default class Pricing {
     }
     this._currency = value;
   }
-  
 
-  /**
-   * Displays the full price in the format: amount currency_name (currency_code).
-   * @returns {String} - The full price format.
-   */
   displayFullPrice() {
     return `${this.amount} ${this.currency.name} (${this.currency.code})`;
   }
 
-  /**
-   * Converts a price based on a conversion rate.
-   * @param {Number} amount - The amount to convert.
-   * @param {Number} conversionRate - The conversion rate.
-   * @returns {Number} - The converted amount.
-   */
   static convertPrice(amount, conversionRate) {
     if (typeof amount !== 'number') {
       throw new TypeError('amount must be a number');
