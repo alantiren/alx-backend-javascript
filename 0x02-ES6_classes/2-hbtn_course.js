@@ -5,16 +5,16 @@
  */
 export default class HolbertonCourse {
   /**
-   * Creates a new HolbertonCourse instance.
+   * Creates a new @see {@link HolbertonCourse}.
    *
    * @param {String} name - The name of the course.
    * @param {Number} length - How long the course is (in months).
    * @param {String[]} students - The names of students in the course.
    */
   constructor(name, length, students) {
-    this._name = this.validateString(name, 'Name');
-    this._length = this.validateNumber(length, 'Length');
-    this._students = this.validateArray(students, 'Students');
+    this.name = name;
+    this.length = length;
+    this.students = students;
   }
 
   /**
