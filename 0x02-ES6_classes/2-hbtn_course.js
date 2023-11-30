@@ -28,7 +28,10 @@ export default class HolbertonCourse {
    * Sets the name of this course.
    */
   set name(value) {
-    this._name = this.validateString(value, 'Name');
+    if (typeof value !== 'string') {
+      throw new TypeError('Name must be a string');
+    }
+    this._name = value;
   }
 
   /**
@@ -42,7 +45,10 @@ export default class HolbertonCourse {
    * Sets the length of this course (in months).
    */
   set length(value) {
-    this._length = this.validateNumber(value, 'Length');
+    if (typeof value !== 'number') {
+      throw new TypeError('Length must be a number');
+    }
+    this._length = value;
   }
 
   /**
@@ -56,48 +62,12 @@ export default class HolbertonCourse {
    * Sets the names of students in this course.
    */
   set students(value) {
-    this._students = this.validateArray(value, 'Students');
-  }
-
-  /**
-   * Validates if the value is a string.
-   * @param {*} value - The value to be validated.
-   * @param {String} attribute - The name of the attribute being validated.
-   * @returns {String} - The validated string.
-   * @throws {TypeError} - If the value is not a string.
-   */
-  validateString(value, attribute) {
-    if (typeof value !== 'string') {
-      throw new TypeError(`${attribute} must be a string`);
+    if (!(value instanceof Array)) {
+      throw new TypeError('Students must be an array of strings');
     }
-    return value;
-  }
-
-  /**
-   * Validates if the value is a number.
-   * @param {*} value - The value to be validated.
-   * @param {String} attribute - The name of the attribute being validated.
-   * @returns {Number} - The validated number.
-   * @throws {TypeError} - If the value is not a number.
-   */
-  validateNumber(value, attribute) {
-    if (typeof value !== 'number') {
-      throw new TypeError(`${attribute} must be a number`);
+    if (!value.every((student) => typeof student === 'string')) {
+      throw new TypeError('Students must be an array of strings');
     }
-    return value;
-  }
-
-  /**
-   * Validates if the value is an array.
-   * @param {*} value - The value to be validated.
-   * @param {String} attribute - The name of the attribute being validated.
-   * @returns {Array} - The validated array.
-   * @throws {TypeError} - If the value is not an array.
-   */
-  validateArray(value, attribute) {
-    if (!Array.isArray(value)) {
-      throw new TypeError(`${attribute} must be an array`);
-    }
-    return value;
+    this._students = value;
   }
 }
