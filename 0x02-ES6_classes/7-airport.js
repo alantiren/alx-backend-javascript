@@ -23,10 +23,10 @@ export default class Airport {
   }
 
   /**
-   * set the airport name.
-   * @returns {String} - The name of the airport.
+   * Setter for the airport name.
+   * @param {String} value - The new name of the airport.
    */
-  set name() {
+  set name(value) {
     this._name = value;
   }
 
@@ -39,8 +39,8 @@ export default class Airport {
   }
 
   /**
-   * set the airport code.
-   * @returns {String} - The code of the airport.
+   * Setter for the airport code.
+   * @param {String} value - The new code of the airport.
    */
   set code(value) {
     this._code = value;
