@@ -45,9 +45,6 @@ If you'd like to contribute to this project, please follow these guidelines:
 
 Make sure to follow the existing coding style and include appropriate documentation for any new features.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE) - see the LICENSE file for details.
 
 ## Acknowledgments
 
