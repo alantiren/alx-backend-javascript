@@ -8,8 +8,7 @@ describe('getPaymentTokenFromAPI', () => {
         expect(res).to.deep.equal({ data: 'Successful response from the API' });
         done();
       })
-      .catch(done); // Ensure that any error in the promise is caught and passed to done
-  });
+      .catch(done);
 
   it('should return a pending promise when success is false', (done) => {
     const promise = getPaymentTokenFromAPI(false);
@@ -18,6 +17,6 @@ describe('getPaymentTokenFromAPI', () => {
 
     promise
       .then(() => done(new Error('Promise should not resolve')))
-      .catch(() => done()); // Expecting the promise to be rejected, call done when it is
+      .catch(() => done());
   });
 });
